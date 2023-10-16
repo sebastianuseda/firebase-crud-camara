@@ -1,0 +1,36 @@
+
+<div class="d-flex justify-content-end mt-3">
+    <button (click)="logout()" class="btn btn-danger">Cerrar Sesión</button>
+  </div>
+<div class="container">
+    
+  
+    <p class="lead">Bienvenido a la aplicación de gestion de tareas.</p>
+  
+    <h3 class="mt-4">Lista de Tareas</h3>
+    <ul class="list-group">
+      <li *ngFor="let item of items" class="list-group-item">
+        <div *ngIf="editingItem !== item">
+          {{ item.name }}
+          <button (click)="editItem(item)" class="btn btn-primary btn-sm">Editar</button>
+          <button (click)="deleteItem(item)" class="btn btn-danger btn-sm">Eliminar</button>
+        </div>
+        <div *ngIf="editingItem === item">
+          <input type="text" [(ngModel)]="editedItemName" class="form-control">
+          <button (click)="saveEditedItem(item)" class="btn btn-success btn-sm">Guardar</button>
+          <button (click)="cancelEdit()" class="btn btn-secondary btn-sm">Cancelar</button>
+        </div>
+      </li>
+    </ul>
+  
+    <h3 class="mt-4">Agregar Nuevo Elemento</h3>
+    <div class="input-group">
+      <input type="text" [(ngModel)]="newItemName" class="form-control">
+      <div class="input-group-append">
+        <button (click)="addItem(newItemName)" class="btn btn-success">Agregar</button>
+      </div>
+    </div> 
+    <br><br>
+   
+  </div>
+  
