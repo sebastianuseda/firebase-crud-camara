@@ -2,3 +2,11 @@
 app-root {
     margin-bottom: 50px; 
   }
+
+  .content {
+    flex: 1;
+    padding-bottom: 10px; /* Ajusta el espacio entre el contenido y el pie de página */
+    
+  }
+
+  

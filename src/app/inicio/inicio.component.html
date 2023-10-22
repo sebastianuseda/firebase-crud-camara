@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <div class="d-flex justify-content-end mt-3">
     <button (click)="logout()" class="btn btn-danger">Cerrar Sesión</button>
@@ -7,30 +8,48 @@
   
     <p class="lead">Bienvenido a la aplicación de gestion de tareas.</p>
   
-    <h3 class="mt-4">Lista de Tareas</h3>
-    <ul class="list-group">
-      <li *ngFor="let item of items" class="list-group-item">
-        <div *ngIf="editingItem !== item">
-          {{ item.name }}
-          <button (click)="editItem(item)" class="btn btn-primary btn-sm">Editar</button>
-          <button (click)="deleteItem(item)" class="btn btn-danger btn-sm">Eliminar</button>
-        </div>
-        <div *ngIf="editingItem === item">
-          <input type="text" [(ngModel)]="editedItemName" class="form-control">
-          <button (click)="saveEditedItem(item)" class="btn btn-success btn-sm">Guardar</button>
-          <button (click)="cancelEdit()" class="btn btn-secondary btn-sm">Cancelar</button>
-        </div>
-      </li>
-    </ul>
   
-    <h3 class="mt-4">Agregar Nuevo Elemento</h3>
-    <div class="input-group">
-      <input type="text" [(ngModel)]="newItemName" class="form-control">
-      <div class="input-group-append">
-        <button (click)="addItem(newItemName)" class="btn btn-success">Agregar</button>
-      </div>
-    </div> 
-    <br><br>
-   
+
+    <div class="form-outline">
+      <label class="form-label" for="nombre">Tarea:</label>
+      <input type="text" id="nombre" class="form-control form-control-lg" [(ngModel)]="tarea.nombre"/>
+      
+    </div>
+    
+    <div class="form-outline">
+      <label class="form-label" for="estatus">Estatus:</label>
+      <input type="text" id="estatus" class="form-control" [(ngModel)]="tarea.estatus"/>
+      
+    </div>
+    
+    <div class="form-outline">
+      <label class="form-label" for="date">Fecha Finalización:</label>
+      <input type="date" id="formControlSm" class="form-control form-control-sm" [(ngModel)]="tarea.date"/>
+      
+    </div> <br>
+    <button class="btn btn-info" (click)="addTarea()"> Operacion</button><i class="fas fa-arrow-right"></i>
+    
+    {{ editando ? 'Actualizar' : 'Registrar' }} 
+    <br>
+    <div *ngFor="let tarea of tareas"><br>
+      <p>{{ tarea.nombre }} ({{ tarea.estatus }}) - {{ tarea.date | date: 'dd/MM/yyyy' }}</p>
+    
+    <button class="btn btn-info" (click)="editarTarea(tarea)"> Editar</button>
+    <button class="btn btn-warning" (click)="borrarTarea(tarea)"> Borrar</button> 
+    
   </div>
+
+  
+  <br>
+  <button class="btn btn-info" (click)="iniciarCamara()">Iniciar Cámara</button>
+   <br> <br>
+  <video #videoElement autoplay></video>
+
+
+  
+</div>
+  
+  
+
+  
   
